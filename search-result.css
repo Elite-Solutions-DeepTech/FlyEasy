@@ -1,0 +1,153 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+  
+.header {
+    background-color: #fefbfb;
+    color: #0a0a0a;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px 1px #1C6EA4;
+}
+  
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.logo {
+  width: 160px;
+}
+  
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin: 0 15px;
+  }
+  
+  .nav-links a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #0e0e0e;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #334c99;
+  }
+  
+  .booking-info {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #e9f1fc;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  .results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+.flight-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.flight-info {
+    display: flex;
+    margin-left: 20px;
+    align-items: center;
+    gap: 20px;
+}
+  
+.flight-info img {
+    width: 50%;
+    height: 50%;
+}
+  
+  .flight-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flight-details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  
+  .flight-details p {
+    margin: 4px 0;
+}
+  
+.fare-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+  
+.fare {
+    text-align: center;
+}
+  
+.fare h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+  
+.fare p {
+    margin: 4px 0;
+}
+  
+.fare .price {
+    color: #800020;
+    font-weight: bold;
+}
+  
+.btn {
+    background-color: #3d5cb8;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.btn:disabled {
+    background-color: #ccc;
+}
+  

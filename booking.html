@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Header styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 0 8px rgba(16, 16, 207, 0.63);
+        }
+
+        header .logo img {
+            height: 80px;
+            margin-left: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 20px;
+        }
+
+        header nav ul li a:hover{
+          color: #3d5cb8;
+        }
+
+        header .user {
+            display: flex;
+            align-items: center;
+        }
+
+        header .user span {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        header .logout {
+            background-color: #8e244d;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Container styling */
+        .container {
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 1000px;
+            margin: 20px auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #passengerFormsContainer {
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        .passenger-form {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            box-shadow: 0 0 8px rgba(16, 16, 207, 0.63);
+            border: 1px solid #ddd;
+        }
+
+        .passenger-form h2 {
+            font-size: 1.25em;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .form__group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form__group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form__group input,
+        .form__group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .form__group input:focus,
+        .form__group select:focus {
+            border-color: #3d5cb8;
+            box-shadow: 0 0 8px rgba(74, 16, 207, 0.548);
+        }
+
+        /* Button styling */
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            background-color: #3d5cb8;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #819ef4;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .passenger-form {
+                padding: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .buttons .btn {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="srcImg/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html/#home-page">Home</a></li>
+                <li><a href="#">Offers</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Personal Information</h1>
+        <div id="passengerFormsContainer"></div>
+        <div class="buttons">
+            <button type="button" onclick="window.location.href='index.html/#home-page';" class="btn">Back</button>
+            <button type="button" onclick="submitPersonalInfo()" class="btn">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passengerFormsContainer = document.getElementById('passengerFormsContainer');
+            const numberOfTravelers = localStorage.getItem('travelers');
+
+            if (numberOfTravelers) {
+                generatePassengerForms(parseInt(numberOfTravelers, 10));
+            }
+
+            function generatePassengerForms(count) {
+                for (let i = 0; i < count; i++) {
+                    const form = document.createElement('div');
+                    form.className = 'passenger-form';
+                    form.innerHTML = `
+                        <form action="#" name="submit-to-google-sheet" >
+                            <h2>Passenger ${i + 1}</h2>
+                            <div class="form__group">
+                                <label>Title</label>
+                                <select name="title${i}" required>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label>First Name</label>
+                                <input type="text" name="firstName${i}" required/>
+                            </div>
+                            <div class="form__group">
+                                <label>Last Name</label>
+                                <input type="text" name="lastName${i}" required/>
+                            </div>
+                            <div class="form__group">
+                                <label>Date of Birth</label>
+                                <input type="date" name="dob${i}" required/>
+                            </div>
+                            <div class="form__group">
+                                <label>Gender</label>
+                                <select name="gender${i}" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label>Mobile Number</label>
+                                <input type="text" name="mobile${i}" required/>
+                            </div>
+                        </form>
+                    `;
+                    passengerFormsContainer.appendChild(form);
+                }
+            }
+        });
+
+        function submitPersonalInfo() {
+            const bookingDetails = [];
+            const forms = document.querySelectorAll('.passenger-form form');
+
+            forms.forEach((form, index) => {
+                const details = {
+                    title: form.querySelector(`[name="title${index}"]`).value,
+                    firstName: form.querySelector(`[name="firstName${index}"]`).value,
+                    lastName: form.querySelector(`[name="lastName${index}"]`).value,
+                    dob: form.querySelector(`[name="dob${index}"]`).value,
+                    gender: form.querySelector(`[name="gender${index}"]`).value,
+                    mobile: form.querySelector(`[name="mobile${index}"]`).value
+                };
+                bookingDetails.push(details);
+            });
+
+            localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+            window.location.href = 'payment.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #3d5cb8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1241cd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Booking Details</h2>
+        <form id="bookingForm" name="submit-to-google-sheet1">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" name="Name" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="seat">Seat Number:</label>
+                <input type="text" name="SeatNo" id="seat" placeholder="Enter your seat number">
+            </div>
+            <div class="form-group">
+                <label for="numItems">Number of Items:</label>
+                <input type="number" name="Items" id="numItems" placeholder="Enter number of items">
+            </div>
+            <div class="form-group">
+                <label for="deliveryTime">Delivery Time:</label>
+                <input type="time" name="Time" id="deliveryTime">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Proceed to Payment" class="btn">
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            const name = document.getElementById('name').value;
+            const seat = document.getElementById('seat').value;
+            const numItems = parseInt(document.getElementById('numItems').value);
+            const deliveryTime = document.getElementById('deliveryTime').value;
+
+            sessionStorage.setItem('bookingDetails', JSON.stringify({
+                name: name,
+                seat: seat,
+                numItems: numItems,
+                deliveryTime: deliveryTime
+            }));
+
+            // Redirect to payment page
+        });
+
+        //sheets
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzC8owtP5PsEceTmM3IWC9ip97DPZeruMf8OqmBD5h0SLNHejgV7yyA8feXFtHHztBi/exec'
+  const form = document.forms['submit-to-google-sheet1']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {console.log('Success!', response)
+        alert("Successfully completed");
+        form.reset();
+        window.location.href = 'b_payments.html'; 
+      }
+    )
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+</html>

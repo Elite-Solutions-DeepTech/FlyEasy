@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-details {
+            margin-bottom: 20px;
+        }
+
+        .order-details p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .payment-methods img {
+            width: 40px;
+            height: auto;
+        }
+
+        .payment-button {
+            padding: 10px 20px;
+            background-color: #3d5cb8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-button:hover {
+            background-color: #1241cd;
+        }
+        .form__group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form__group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form__group input, .form__group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .form__group input:focus, .form__group select:focus {
+            border-color: #3d5cb8;
+            box-shadow: 0 0 8px rgba(74, 16, 207, 0.548);
+        }
+
+        .btn {
+            background-color: #3d5cb8;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #819ef4;
+            transform: translateY(-2px);
+        }
+
+        .payment-option {
+            display: none;
+        }
+
+        .payment-option.active {
+            display: block;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Additional advanced styles */
+        .payment-container .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .logo {
+            height: 50px;
+        }
+
+        .header .logo img {
+            height: 100%;
+        }
+
+        .header .total-price {
+            font-size: 1.5em;
+            color: #3d5cb8;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .btn-container {
+                flex-direction: column;
+            }
+
+            .btn-container .btn {
+                margin-bottom: 10px;
+            }
+
+            .form__group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Payment Details</h2>
+        <div class="order-details" id="orderDetails">
+            <!-- Booking details will be dynamically loaded here -->
+        </div>
+        <div class="form-group">
+            <button class="payment-button" onclick="confirmPayment()">Confirm Payment</button>
+        </div>
+        <div class="payment-methods">
+            <img src="food_img/a1.png" alt="PayPal">
+            <img src="food_img/a2.png" alt="MasterCard">
+            <img src="food_img/1747946.webp" alt="Visa">
+        </div>
+
+        <h2>Payment Information</h2>
+        <form action="#">
+            <div class="form__group">
+                <label for="paymentMethod">Select Payment Method</label>
+                <select id="paymentMethod" onchange="togglePaymentOptions()">
+                    <option value="card">Credit/Debit Card</option>
+                    <option value="upi">UPI</option>
+                </select>
+            </div>
+    
+            <div id="cardPayment" class="payment-option active">
+                <div class="form__group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" required />
+                    <span class="error" id="cardNumberError"></span>
+                </div>
+                <div class="form__group">
+                    <label for="cardExpiry">Expiry Date</label>
+                    <input type="text" id="cardExpiry" placeholder="MM/YY" required />
+                    <span class="error" id="cardExpiryError"></span>
+                </div>
+                <div class="form__group">
+                    <label for="cardCVC">CVC</label>
+                    <input type="text" id="cardCVC" required />
+                    <span class="error" id="cardCVCError"></span>
+                </div>
+            </div>
+    
+            <div id="upiPayment" class="payment-option">
+                <div class="form__group">
+                    <label for="upiId">UPI ID</label>
+                    <input type="text" id="upiId" required />
+                    <span class="error" id="upiIdError"></span>
+                </div>
+            </div>
+    
+            <div class="btn-container">
+                <button class="btn" onclick="proceedToPayment()">Proceed to Payment</button>
+                <button class="btn" onclick="cancelPayment()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <script>
+        function loadBookingDetails() {
+            const bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
+
+            if (bookingDetails) {
+                const orderDetails = document.getElementById('orderDetails');
+                orderDetails.innerHTML = `
+                    <p><strong>Name:</strong> ${bookingDetails.name}</p>
+                    <p><strong>Seat No:</strong> ${bookingDetails.seat}</p>
+                    <p><strong>Number of Items:</strong> ${bookingDetails.numItems}</p>
+                    <p><strong>Delivery Time:</strong> ${bookingDetails.deliveryTime}</p>
+                `;
+            }
+        }
+
+        function proceedToPayment() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            let paymentDetails;
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+            if (paymentMethod === 'card') {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const cardExpiry = document.getElementById('cardExpiry').value;
+                const cardCVC = document.getElementById('cardCVC').value;
+
+                if (!validateCardNumber(cardNumber)) {
+                    document.getElementById('cardNumberError').textContent = 'Invalid card number';
+                    isValid = false;
+                }
+
+                if (!validateCardExpiry(cardExpiry)) {
+                    document.getElementById('cardExpiryError').textContent = 'Invalid expiry date';
+                    isValid = false;
+                }
+
+                if (!validateCardCVC(cardCVC)) {
+                    document.getElementById('cardCVCError').textContent = 'Invalid CVC';
+                    isValid = false;
+                }
+
+                paymentDetails = { cardNumber, cardExpiry, cardCVC };
+            } else if (paymentMethod === 'upi') {
+                const upiId = document.getElementById('upiId').value;
+
+                if (!validateUpiId(upiId)) {
+                    document.getElementById('upiIdError').textContent = 'Invalid UPI ID';
+                    isValid = false;
+                }
+
+                paymentDetails = { upiId };
+            }
+
+            if (isValid) {
+                localStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
+                window.location.href = 'food-success.html';
+            }
+        }
+
+        function validateCardNumber(number) {
+            const regex = /^[0-9]{16}$/;
+            return regex.test(number);
+        }
+
+        function validateCardExpiry(date) {
+            const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+            return regex.test(date);
+        }
+
+        function validateCardCVC(cvc) {
+            const regex = /^[0-9]{3,4}$/;
+            return regex.test(cvc);
+        }
+
+        function validateUpiId(upiId) {
+            const regex = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
+            return regex.test(upiId);
+        }
+
+        function cancelPayment() {
+            window.location.href = 'index.html';
+        }
+
+        function togglePaymentOptions() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            document.getElementById('cardPayment').classList.toggle('active', paymentMethod === 'card');
+            document.getElementById('upiPayment').classList.toggle('active', paymentMethod === 'upi');
+        }
+
+        function confirmPayment() {
+            // Placeholder for payment confirmation logic
+            // Redirect to success page after payment confirmation
+            window.location.href = 'success.html';
+        }
+
+        window.onload = function() {
+            loadBookingDetails();
+        };
+    </script>
+</body>
+</html>

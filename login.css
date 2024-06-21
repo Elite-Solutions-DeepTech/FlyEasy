@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.start-page {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.692), rgba(48, 35, 186, 0.473));
+    background-position: center;
+    background-size: cover;
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.start-page.fade-out {
+    animation: fadeOut 1.5s ease-in-out;
+}
+
+.new_nav {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+}
+
+.s_logo {
+    margin-left: 50px;
+    margin-bottom: 15px;
+    width: 160px;
+    color: #ffffff;
+}
+
+.s_logo span {
+    color: #3d5cb8;
+}
+
+.new_nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 20px;
+}
+
+.new_nav ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.s_li a:hover {
+    color: #1241cd;
+    border-bottom: 1px solid;
+    transition: 0.5s;
+}
+
+.n_btn {
+    padding: 0.75rem 2rem;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-bottom: 40px;
+    margin-right: 20px;
+    transition: 0.3s;
+}
+
+.n_btn a {
+    text-decoration: none;
+    color: #f1f5f9;
+}
+
+.n_btn:hover {
+    background-color: #1241cd;
+}
+
+.bgvideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.sign_in {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.form-box {
+    width: 100%;
+    padding: 20px;
+}
+
+.form-box h2{
+  color: #f1f5f9;
+  text-align: center;
+  margin-bottom: 10px;
+  width: 20px;
+}
+
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.5s;
+    opacity: 1;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    opacity: 0;
+}
+
+.input-box .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.remember-forgot a{
+    color: #1241cd;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background: #1241cd;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0d2ba0;
+}
+
+.login-register {
+    color: #fff;
+    text-align: center;
+}
+
+.login-register a {
+    color: #1241cd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
+
+.sign_in .form-box.login {
+  display: none;
+}
+
+.form-toggle {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-toggle a {
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-toggle a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

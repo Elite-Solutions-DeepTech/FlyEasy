@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <title>FlyEasy</title>
+</head>
+<body>
+  <div id="start-page" class="start-page">
+    <img class="bgvideo" src="srcImg/black-and-white-airplane-9skqautcnishesgr.webp" alt="">
+    <div class="new_nav">
+      <h1 class="s_logo">FLY<span>EASY</span></h1>
+      <ul class="s_ul">
+        <li class="s_li"><a href="./index.html">Home</a></li>
+        <li class="s_li"><a href="#">About</a></li>
+        <li class="s_li"><a href="Reg.html">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="sign_in">
+      <div class="form-toggle">
+        <a href="#" id="toggle-login">Login</a> | <a href="#" id="toggle-register">Register</a>
+      </div>
+      <div class="form-box login">
+        <h2>Login</h2>
+        <form action="#" name="submit-to-google-sheet">
+          <div class="input-box">
+            <span class="icon"><i class="ri-mail-fill"></i></span>
+            <input type="email" name="Email" required>
+            <label>Email</label>
+          </div>
+
+          <div class="input-box">
+            <span class="icon"><i class="ri-lock-fill"></i></span>
+            <input type="password" name="Password" required>
+            <label>Password</label>
+          </div>
+
+          <div class="remember-forgot">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="#">Forgot Password</a>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <div class="login-register">
+            <p>Don't have an account? <a href="#" id="switch-to-register">Register</a></p>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-box register">
+        <h2>Register</h2>
+        <form action="#" name="submit-to-google-sheet">
+          <div class="form-grid">
+            <div class="input-box">
+              <span class="icon"><i class="ri-user-fill"></i></span>
+              <input type="text" required>
+              <label>Username</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="ri-mail-fill"></i></span>
+              <input type="email" required>
+              <label>Email</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="ri-lock-fill"></i></span>
+              <input type="password" required>
+              <label>Password</label>
+            </div>
+
+          <div class="remember-forgot">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="#">Forgot Password</a>
+          </div>
+          <!-- <button type="submit" value="submit" class="btn">Register</button> -->
+           <input type="submit" value="Register" class="btn">
+          <div class="login-register">
+            <p>Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggleLogin = document.getElementById('toggle-login');
+    const toggleRegister = document.getElementById('toggle-register');
+    const switchToLogin = document.getElementById('switch-to-login');
+    const switchToRegister = document.getElementById('switch-to-register');
+    const loginForm = document.querySelector('.form-box.login');
+    const registerForm = document.querySelector('.form-box.register');
+
+    toggleLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+    });
+
+    toggleRegister.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+    });
+
+    switchToLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+    });
+
+    switchToRegister.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+    });
+
+    // Initially show login form
+    loginForm.style.display = 'block';
+    registerForm.style.display = 'none';
+
+    // sheets
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwLycsplbJOVWa0cYy6Spl-3OAIEUlt7Pqq5u5ICoeEpxNh7gXhsH9Y3kW2pwgP1_3p/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {console.log('Success!', response)
+        alert("Message sent successfully")
+        form.reset();
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+  </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>FlyEasy</title>
+</head>
+
+<body>
+  <!--Start page-->
+  <div id="start-page" class="start-page">
+    <video class="bgvideo" autoplay loop muted plays-inline>
+      <source src="srcImg/InShot_20240609_122535444.mp4" type="video/mp4">
+    </video>
+    <div class="new_nav">
+      <h1 class="s_logo">FLY<span>EASY</span></h1>
+      <ul class="s_ul">
+        <li class="s_li"><a href="./index.html">Home</a></li>
+        <li class="s_li"><a href="#about-us">About</a></li>
+        <li class="s_li"><a href="#contact">Contact us</a></li>
+        <button class="n_btn" onclick="window.location.href='login.html';">Sign in</button>
+      </ul>
+    </div>
+    <div class="s_container">
+      <h1>FLY<span>EASY</span></h1>
+      <p>Seamless Flight Booking at Your Fingertips<br><span>Discover effortless flight booking <br>with transparent pricing and real-time support.</span></p>
+      <button id="start-button" class="start-btn">Let's FLY</button>
+    </div>
+  </div>
+  <!--Home page-->
+  <div id="home-page" class="home-page">
+    <nav>
+      <div class="nav__logo"><img src="srcImg/logo.png" alt="logo"></div>
+      <ul class="nav__links">
+        <li class="link"><a href="./index.html">Home</a></li>
+        <li class="link"><a href="#Book_Flight">Book Flight</a></li>
+        <li class="link"><a href="#Order_Food">Offers</a></li>
+        <li class="link"><a href="#about-us">About us</a></li>
+        <li class="link"><a href="#contact">Contact us</a></li>
+      </ul>
+      <button class="login-button" onclick="window.location.href='login.html';">Sign in</button>
+    </nav>
+    <header class="section__container header__container">
+      <h1 class="section__header">Book your next adventure with ease<br><span>Fly with us!</span></h1>
+      <div class="backimg">
+        <img class="bgimg" src="srcImg/backimg.gif" alt="header" />
+        <img class="Flight" src="srcImg/flight.png" alt="">
+      </div>
+    </header>
+<!--Flight booking-->
+
+<div id="Book_Flight" class="book_flight">
+  <h1 class="heading">Book Your Tickets <br><span>From Here</span></h1>
+  <section class="section__container booking__container">
+    <div class="booking__nav">
+      <span>Economy Class</span>
+      <span>Business Class</span>
+      <span>First Class</span>
+    </div>
+    <form id="flightSearchForm">
+      <div class="form__group">
+        <span><i class="ri-map-pin-line"></i></span>
+        <div class="input__content">
+          <div class="input__group">
+            <input type="text" id="fromInput" name="from"/>
+            <label>On-Boarding</label>
+          </div>
+          <p>Yours on-board location</p>
+        </div>
+      </div>
+      <div class="form__group">
+        <span><i class="ri-map-pin-line"></i></span>
+        <div class="input__content">
+          <div class="input__group">
+            <input type="text" id="toInput" name="to"/>
+            <label>Destination</label>
+          </div>
+          <p>your destination</p>
+        </div>
+      </div>
+      <div class="form__group">
+        <span><i class="ri-user-line"></i></span>
+        <div class="input__content">
+          <div class="input__group">
+            <input type="number" id="travelersInput" name="travelers"/>
+            <label>Travellers</label>
+          </div>
+          <p>No of travellers</p>
+        </div>
+      </div>
+      <div class="form__group">
+        <span><i class="ri-calendar-line"></i></span>
+        <div class="input__content">
+          <div class="input__group">
+            <input type="date" id="dateInput" name="date"/>
+            <label>Date</label>
+          </div>
+          <p>Choose your travel date</p>
+        </div>
+      </div>
+      <button type="submit" id="Search_button" class="btn" onclick="window.location.href='search-results.html';"><i class="ri-search-line"></i></button>
+    </form>
+  </section>
+</div>
+
+<!--Food booking-->
+
+<div id="Order_Food" class="order_food">
+  <h1 class="heading">Order Your Favorite Food <br><span>From Here</span></h1>
+  <section class="section-container ad-container">
+    <div class="image-section">
+      <div class="slider">
+      <img src="srcImg/burger-with-melted-cheese.webp" alt="" class="active">
+      <img src="srcImg/detail-of-pavlova-strawberry-piece-of-cake.webp" alt="Delicious Food 2">
+      <img src="srcImg/fish-and-chips-takeaway-in-husavik.webp" alt="Delicious Food 3">
+      <img src="srcImg/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.webp" alt="Delicious Food 4">
+      </div>
+    </div>
+    <div class="content-section">
+      <div class="logo">
+        <div class="logo-icon"><img src="srcImg/logo.png" alt=""></div>
+        <div class="logo-text">FLY<span>EASY</span></div>
+      </div>
+      <h1>SKY<br><span>FLAVOURS</span></h1>
+      <p>Elevate your journey with our in-flight dining feature. Order delicious meals seamlessly while booking your flight, ensuring a satisfying culinary experience at 30,000 feet</p>
+      <button onclick="window.location.href='food.html';">Order Food</button>
+    </div>
+  </section>
+</div>
+
+<!-- About Us Page -->
+<div id="about-us" class="about-us">
+  <div class="about-header">
+    <h1 class="sub-title">About <span>Us</span></h1>
+    <p>Discover more about our mission, vision, values, and meet the team dedicated to making FlyEasy the best travel experience for you.</p>
+  </div>
+  <div class="about-content">
+    <div class="about-image">
+      <img src="srcImg/about_img.jpg" alt="About Us Image">
+    </div>
+    <div class="about-text">
+      <h2>Our Story</h2>
+      <p>FlyEasy started with a vision to simplify flight booking. We aim to provide seamless travel experiences with transparent pricing and 24/7 support. Our dedicated team works tirelessly to ensure your journey is smooth and enjoyable.</p>
+      <h2>Our Mission</h2>
+      <p>We strive to offer hassle-free flight booking experiences, combining advanced technology with exceptional customer service to meet all your travel needs.</p>
+      <h2>Our Vision</h2>
+      <p>We envision a world where booking a flight is as simple as sending a text, making travel accessible and enjoyable for everyone.</p>
+    </div>
+  </div>
+  <div class="values-section">
+    <h2>Our Core Values</h2>
+    <div class="values">
+      <div class="value">
+        <i class="ri-customer-service-2-line"></i>
+        <h3>Customer First</h3>
+        <p>We prioritize our customers' needs and strive to exceed their expectations.</p>
+      </div>
+      <div class="value">
+        <i class="ri-shield-check-line"></i>
+        <h3>Transparency</h3>
+        <p>We believe in clear, honest communication and transparent pricing.</p>
+      </div>
+      <div class="value">
+        <i class="ri-lightbulb-flash-line"></i>
+        <h3>Innovation</h3>
+        <p>We continuously improve our services through technology and creativity.</p>
+      </div>
+      <div class="value">
+        <i class="ri-hand-heart-line"></i>
+        <h3>Reliability</h3>
+        <p>We ensure our services are dependable and trustworthy.</p>
+      </div>
+    </div>
+  </div>
+  <div id="meet-team" class="meet-team">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+      <div class="team">
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="srcImg/Hemanth.jpg" alt="Team Member 1">
+            </div>
+            <div class="team-member-back">
+              <h4>Hemanth</h4>
+              <p style="color: aliceblue;">Team Lead</p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="srcImg/yash.jpg" alt="Team Member 2">
+            </div>
+            <div class="team-member-back">
+              <h4>Yashwanth Kumar</h4>
+              <p style="color: aliceblue;">Front-end Developer</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="srcImg/leela.jpg" alt="Team Member 3">
+            </div>
+            <div class="team-member-back">
+              <h4>Leela Rani</h4>
+              <p style="color: aliceblue;">Front-end Developer</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="srcImg/satya.jpg" alt="Team Member 4">
+            </div>
+            <div class="team-member-back">
+              <h4>Satya Gayathri</h4>
+              <p style="color: aliceblue;">Front-end Developer</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="srcImg/amar.jpg" alt="Team Member 5">
+            </div>
+            <div class="team-member-back">
+              <h4>Amarnadh</h4>
+              <p style="color: aliceblue;">Data Management</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="srcImg/vikas.jpg" alt="Team Member 6">
+            </div>
+            <div class="team-member-back">
+              <h4>Vikas Raj</h4>
+              <p style="color: aliceblue;">Data Management </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>      
+</div>
+
+<!--explore-content-->
+<div class="explore_container">
+  <h1>Explore <span>New Places</span></h1>
+  <br><br>
+  <div class="places">
+      <div class="place" id="agra">
+          <img src="srcImg/taj-mahal-agra.webp" alt="Agra">
+          <div class="overlay">
+              <div class="text">Agra</div>
+          </div>
+      </div>
+      <div class="place" id="kolkata">
+          <img src="srcImg/kolkota-img.jpg" alt="Kolkata">
+          <div class="overlay">
+              <div class="text">Kolkata</div>
+          </div>
+      </div>
+      <div class="place" id="mumbai">
+          <img src="srcImg/mumbai-1370023_640.jpg" alt="Mumbai">
+          <div class="overlay">
+              <div class="text">Mumbai</div>
+          </div>
+      </div>
+      <div class="place" id="paris">
+          <img src="srcImg/eiffel-tower-paris.jpg" alt="paris">
+          <div class="overlay">
+              <div class="text">paris</div>
+          </div>
+      </div>
+      <div class="place" id="london">
+          <img src="srcImg/londonn-img.jpeg" alt="london">
+          <div class="overlay">
+              <div class="text">london</div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!--Contact-page-->
+<div id="contact">
+<h1 class="sub-title">Contact <span>Us</span></h1>
+  <div class="container_contact">
+      <div class="row">
+          <div class="contact-left">
+              <p><i class="ri-mail-fill"></i>Email: Flyeasy@gmail.com</p>
+              <p><i class="ri-phone-fill"></i>Phone: 9998883344</p>
+              <div class="social-icon">
+                <a href="https://www.facebook.com/profile.php?id=61561266838695&mibextid=ZbWKwL"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="#"><i class="ri-instagram-fill"></i></a>
+                <a href="#"><i class="ri-whatsapp-fill"></i></i></a>
+                <a href="https://www.linkedin.com/in/fly-easy-083226315?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="ri-linkedin-box-fill"></i></i></a>
+              </div>
+          </div>
+      
+          <div class="contact-right">
+              <form action="#" name="submit-to-google-sheet">
+                  <input type="text" name="Name" placeholder="Your name" required>
+                  <input type="email" name="email" placeholder="Your Email" required>
+                  <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                  <!--<button type="submit" class="btn btn2">Submit</button>-->
+                  <input type="submit" value="Submit" class="btn btn2">
+              </form>
+          </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyMerRgm2u9KuOOUKggxQ1d7YhTH1-FGBhpZwbSmmoOh73EUuuYDQcZuQpNUStd9oSC/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {console.log('Success!', response)
+        alert("Message sent successfully")
+        form.reset();
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+  </script>
+</body>
+</html>

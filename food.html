@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grab Food</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .new_nav {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+}
+
+.s_logo {
+    margin-left: 50px;
+    margin-bottom: 15px;
+    width: 160px;
+    color: #ffffff;
+}
+
+.s_logo span {
+    color: #3d5cb8;
+}
+
+.new_nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 20px;
+}
+
+.new_nav ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.s_li a:hover {
+    color: #1241cd;
+    border-bottom: 1px solid;
+    transition: 0.5s;
+}
+
+.n_btn {
+    padding: 0.75rem 2rem;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-bottom: 40px;
+    margin-right: 20px;
+    transition: 0.3s;
+}
+
+.n_btn a {
+    text-decoration: none;
+    color: #f1f5f9;
+}
+
+.n_btn:hover {
+    background-color: #1241cd;
+}
+        .container {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        .categories, .products, .invoice {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .categories {
+            flex: 1;
+        }
+        .categories button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            background-color: #e9ecef;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .categories button.active {
+            background-color: #3d5cb8;
+            color: #f1f5f9;
+        }
+        .products {
+            flex: 3;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #3d5cb8;
+            box-shadow: 0 0 10px rgba(12, 31, 125, 0.461);
+            border-radius: 8px;
+            padding: 15px;
+            width: calc(33.333% - 20px);
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.461);
+        }
+        .product .price {
+            font-size: 1.2em;
+            color: #334c99;
+        }
+
+.categories .category-icon {
+    width: 30px; 
+    margin-right: 10px; 
+}
+        .product .old-price {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .invoice {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .invoice h3 {
+            margin-top: 0;
+        }
+        .invoice .invoice-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .invoice .total {
+            font-weight: bold;
+        }
+        .order-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3d5cb8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .payment-methods img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .add-cart{
+            width: 100%;
+            padding: 10px;
+            background-color: #3d5cb8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        @keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.categories button:hover {
+    animation: pulse 0.5s ease-in-out;
+}
+
+.product:hover{
+    animation: pulse 0.5s ease-in-out;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="categories">
+            <button class="active" onclick="filterCategory('Burger')">
+                
+                Burger
+            </button>
+            <button onclick="filterCategory('Donuts')">
+          
+                Donuts
+            </button>
+            <button onclick="filterCategory('Ice')">
+              
+                Ice Cream
+            </button>
+            <button onclick="filterCategory('Potato')">
+     
+                Potato
+            </button>
+            <button onclick="filterCategory('Pasta')">
+              
+                Pasta
+            </button>
+            <button onclick="filterCategory('Pizza')">
+              
+                Pizza
+            </button>
+            <button onclick="filterCategory('Hot dog')">
+                
+                Hot dog
+            </button>
+            <button onclick="filterCategory('Chicken')">
+                Chicken
+            </button>
+            <button onclick="filterCategory('Drinks')">
+                
+                Drinks
+            </button>
+            <button onclick="filterCategory('Cakes')">
+                Cakes
+            </button>
+            <button onclick="filterCategory('Salads')">
+                
+                Salads
+            </button>
+            <button onclick="filterCategory('Fish')">
+                
+                Fish
+            </button>
+        </div>
+        <div class="products">
+            <div class="product-list" id="product-list">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+        <div class="invoice">
+            <h3>Invoice</h3>
+            <div id="invoice-items"></div>
+            <div class="invoice-item total">
+                <span>Sub Total</span><span id="subtotal">₹0</span>
+            </div>
+            <div class="invoice-item total">
+                <span>Tax</span><span id="tax">₹0</span>
+            </div>
+            <div class="invoice-item total">
+                <span>Total Payment</span><span id="total">₹0</span>
+            </div>
+            <div class="payment-methods">
+                <img src="food_img/a1.png" alt="PayPal">
+                <img src="food_img/a2.png" alt="MasterCard">
+                <img src="food_img/1747946.webp" alt="Visa">
+            </div>
+            <button class="order-button" onclick="window.location.href='B-pay.html';">Place An Order Now</button>
+        </div>
+    </div>
+    <script>
+        const products = [
+        // Burgers
+        { category: 'Burger', name: 'Vegetable Burger', price: 250, oldPrice: 283, img: 'food_img/bg5.jpg' },
+        { category: 'Burger', name: 'Meat Burger', price: 280, oldPrice: 283, img: 'food_img/bg1.jpg' },
+        { category: 'Burger', name: 'Cheese Burger', price: 320, oldPrice: 283, img: 'food_img/bg2.jpg' },
+        { category: 'Burger', name: 'Vegetable Burger', price: 300, oldPrice: 283, img: 'food_img/bg3.jpg' },
+        { category: 'Burger', name: 'Been Burger', price: 150, oldPrice: 283, img: 'food_img/b7.png' },
+        { category: 'Burger', name: 'Wild Salmon Burger', price: 400, oldPrice: 283, img: 'food_img/bg4.png' },
+        { category: 'Burger', name: 'Chicken Burger', price: 270, oldPrice: 300, img: 'food_img/b8.png' },
+        { category: 'Burger', name: 'BBQ Burger', price: 350, oldPrice: 380, img: 'food_img/b6.png' },
+        // Donuts
+        { category: 'Donuts', name: 'Chocolate Donut', price: 100, oldPrice: 150, img: 'food_img/donut 4.png' },
+        { category: 'Donuts', name: 'Glazed Donut', price: 120, oldPrice: 150, img: 'food_img/donut 3.png' },
+        { category: 'Donuts', name: 'Strawberry Donut', price: 110, oldPrice: 150, img: 'food_img/donut 2.png' },
+        { category: 'Donuts', name: 'Blueberry Donut', price: 115, oldPrice: 150, img: 'food_img/donut 1.png' },
+        // Ice Cream
+        { category: 'Ice', name: 'Vanilla Ice Cream', price: 50, oldPrice: 70, img: 'food_img/ice 3.png' },
+        { category: 'Ice', name: 'Chocolate Ice Cream', price: 60, oldPrice: 80, img: 'food_img/ice 2.png' },
+        { category: 'Ice', name: 'Strawberry Ice Cream', price: 55, oldPrice: 75, img: 'food_img/ice 1.png' },
+        // Potato
+        { category: 'Potato', name: 'French Fries', price: 80, oldPrice: 90, img: 'food_img/french.png' },
+        { category: 'Potato', name: 'Potato Wedges', price: 100, oldPrice: 110, img: 'food_img/french 2.png' },
+        // pasta
+        { category: 'Pasta', name: 'Cheese pasta', price: 160, oldPrice: 200, img: 'food_img/p1.jpg' },
+        { category: 'Pasta', name: 'Tomato pasta', price: 135, oldPrice: 150, img: 'food_img/p2.webp' },
+        // Pizza
+        { category: 'Pizza', name: 'Cheese Pizza', price: 200, oldPrice: 250, img: 'food_img/pz 1.png' },
+        { category: 'Pizza', name: 'Pepperoni Pizza', price: 220, oldPrice: 260, img: 'food_img/pz 2.png' },
+        // Hot dog
+        { category: 'Hot dog', name: 'Classic Hot Dog', price: 150, oldPrice: 180, img: 'food_img/hd.jpeg' },
+        { category: 'Hot dog', name: 'Chili Cheese Dog', price: 180, oldPrice: 200, img: 'food_img/hd3.png' },
+        // Chicken
+        { category: 'Chicken', name: 'Grilled Chicken', price: 300, oldPrice: 350, img: 'food_img/c 1.png' },
+        { category: 'Chicken', name: 'Fried Chicken', price: 280, oldPrice: 320, img: 'food_img/c 2.png' },
+        // Drinks
+        { category: 'Drinks', name: 'Cola', price: 30, oldPrice: 40, img: 'food_img/d1.png' },
+        { category: 'Drinks', name: 'Coffee', price: 50, oldPrice: 60, img: 'food_img/d2.png' },
+        // Cakes
+        { category: 'Cakes', name: 'Chocolate Cake', price: 180, oldPrice: 200, img: 'food_img/ck1.png' },
+        { category: 'Cakes', name: 'Red Velvet Cake', price: 200, oldPrice: 220, img: 'food_img/ck2.png' },
+        // Salads
+        { category: 'Salads', name: 'Caesar Salad', price: 120, oldPrice: 150, img: 'food_img/cs1.png' },
+        { category: 'Salads', name: 'Greek Salad', price: 130, oldPrice: 160, img: 'food_img/cs2.png' },
+        // Fish
+        { category: 'Fish', name: 'Grilled Fish', price: 250, oldPrice: 280, img: 'food_img/fi1.png' },
+        { category: 'Fish', name: 'Fried Fish', price: 220, oldPrice: 250, img: 'food_img/fi.png' },
+    ];
+
+    const cart = {
+        items: [],
+        subtotal: 0,
+        tax: 0,
+        total: 0,
+        addItem: function(name, price) {
+            this.items.push({ name, price });
+            this.updateTotals();
+        },
+        updateTotals: function() {
+            this.subtotal = this.items.reduce((sum, item) => sum + item.price, 0);
+            this.tax = this.subtotal * 0.1; // Assuming 10% tax rate
+            this.total = this.subtotal + this.tax;
+            updateInvoice();
+        }
+    };
+
+    function addToCart(name, price) {
+        cart.addItem(name, price);
+    }
+
+    function updateInvoice() {
+        const invoiceItems = document.getElementById('invoice-items');
+        const subtotal = document.getElementById('subtotal');
+        const tax = document.getElementById('tax');
+        const total = document.getElementById('total');
+
+        invoiceItems.innerHTML = '';
+        cart.items.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'invoice-item';
+            itemElement.innerHTML = `<span>${item.name}</span><span>₹${item.price}</span>`;
+            invoiceItems.appendChild(itemElement);
+        });
+
+        subtotal.innerText = `₹${cart.subtotal}`;
+        tax.innerText = `₹${cart.tax.toFixed(2)}`;
+        total.innerText = `₹${cart.total.toFixed(2)}`;
+    }
+
+    function filterCategory(category) {
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = '';
+
+        // Filter products based on category and display
+        products.filter(product => product.category === category).forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.className = 'product';
+            productElement.innerHTML = `
+                <img src="${product.img}" alt="${product.name}">
+                <h4>${product.name}</h4>
+                <p class="price">₹${product.price}</p>
+                <button class="add-cart" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+            `;
+            productList.appendChild(productElement);
+        });
+
+        // Toggle active class for category buttons
+        document.querySelectorAll('.categories button').forEach(button => button.classList.remove('active'));
+        document.querySelector(`.categories button[onclick="filterCategory('${category}')"]`).classList.add('active');
+    }
+
+    function proceedToBooking() {
+        // Save cart items and totals to localStorage for use in booking page
+        localStorage.setItem('cartItems', JSON.stringify(cart.items));
+        localStorage.setItem('cartSubtotal', cart.subtotal);
+        localStorage.setItem('cartTax', cart.tax);
+        localStorage.setItem('cartTotal', cart.total);
+
+        // Redirect to booking page
+        window.location.href = 'B-pay.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize with default category
+        filterCategory('Burger');
+    });
+    </script>
+</body>
+</html>
